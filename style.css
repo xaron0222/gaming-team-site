@@ -605,3 +605,660 @@ a {
     padding: 70px 6%;
   }
 }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Arial", "Helvetica", sans-serif;
+  background: #ffffff;
+  color: #111111;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* 固定ヘッダーでジャンプ先が隠れないようにする */
+#home,
+#news,
+#member,
+#valorant,
+#sf6,
+#shadowverse,
+#streamer,
+#sns,
+#schedule,
+#contact {
+  scroll-margin-top: 100px;
+}
+
+/* =========================
+   ローディング画面
+========================= */
+
+#loading {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background:
+    radial-gradient(circle at center, rgba(220, 0, 0, 0.12), transparent 38%),
+    #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+#loading.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loading-inner {
+  width: min(420px, 80%);
+  text-align: center;
+}
+
+.logo-reveal {
+  width: 170px;
+  max-width: 60%;
+  margin: 0 auto 28px;
+  overflow: hidden;
+  animation: revealLogo 2.2s ease forwards;
+}
+
+.loading-logo {
+  width: 100%;
+  display: block;
+  animation: logoPulse 1.6s ease-in-out infinite;
+}
+
+#loading-text {
+  margin: 0 0 22px;
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 0.28em;
+  color: #111111;
+}
+
+.loading-bar {
+  width: 100%;
+  height: 10px;
+  background: #e7e7e7;
+  border-radius: 999px;
+  overflow: hidden;
+  box-shadow: 0 8px 22px rgba(200, 0, 0, 0.18);
+}
+
+#loading-progress {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #111111, #e60012, #ff5555);
+  border-radius: 999px;
+  transition: width 0.1s linear;
+}
+
+#loading-percent {
+  margin-top: 14px;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 0.18em;
+  color: #e60012;
+}
+
+/* =========================
+   ヘッダー
+========================= */
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+  height: 82px;
+  padding: 0 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(230, 0, 18, 0.25);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
+}
+
+.header-logo img {
+  width: 62px;
+  display: block;
+}
+
+.global-nav > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+
+.global-nav a {
+  position: relative;
+  display: block;
+  padding: 30px 0;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  color: #111111;
+  transition: color 0.25s ease;
+}
+
+.global-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 23px;
+  width: 0;
+  height: 2px;
+  background: #e60012;
+  transition: width 0.25s ease;
+}
+
+.global-nav a:hover {
+  color: #e60012;
+}
+
+.global-nav a:hover::after {
+  width: 100%;
+}
+
+/* MEMBERドロップダウン */
+
+.nav-member {
+  position: relative;
+}
+
+.member-dropdown {
+  position: absolute;
+  top: 78px;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  list-style: none;
+  width: 200px;
+  margin: 0;
+  padding: 10px 0;
+  background: #ffffff;
+  border: 1px solid rgba(230, 0, 18, 0.22);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.25s ease;
+}
+
+.nav-member:hover .member-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.member-dropdown li a {
+  padding: 13px 18px;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+}
+
+.member-dropdown li a:hover {
+  background: rgba(230, 0, 18, 0.08);
+}
+
+/* スマホメニュー */
+
+.menu-button {
+  display: none;
+  width: 44px;
+  height: 36px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.menu-button span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  margin: 7px 0;
+  background: #111111;
+  border-radius: 999px;
+}
+
+/* =========================
+   メイン表示
+========================= */
+
+#site-content {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+#site-content.show {
+  opacity: 1;
+}
+
+/* =========================
+   HOME
+========================= */
+
+.hero {
+  min-height: 100vh;
+  padding: 130px 20px 70px;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.76), rgba(255, 255, 255, 0.92)),
+    url("images/hero-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(230, 0, 18, 0.12), transparent 35%),
+    linear-gradient(315deg, rgba(17, 17, 17, 0.08), transparent 42%);
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 130px;
+  background: linear-gradient(transparent, #ffffff);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  animation: heroFadeIn 1.2s ease forwards;
+}
+
+.site-label {
+  display: inline-block;
+  margin: 0 0 18px;
+  padding: 8px 16px;
+  border: 1px solid #e60012;
+  color: #e60012;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.22em;
+  background: rgba(255, 255, 255, 0.75);
+  box-shadow: 0 10px 26px rgba(230, 0, 18, 0.12);
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(46px, 9vw, 118px);
+  letter-spacing: 0.08em;
+  color: #111111;
+  text-shadow: 4px 4px 0 rgba(230, 0, 18, 0.18);
+}
+
+.hero h1::after {
+  content: "";
+  display: block;
+  width: 140px;
+  height: 5px;
+  background: #e60012;
+  margin: 22px auto 0;
+  border-radius: 999px;
+}
+
+.hero-subtitle {
+  margin-top: 22px;
+  font-size: clamp(15px, 2.2vw, 24px);
+  letter-spacing: 0.12em;
+  color: #111111;
+  font-weight: 900;
+}
+
+.disclaimer {
+  margin: 28px auto 0;
+  max-width: 680px;
+  font-size: 13px;
+  line-height: 1.8;
+  color: rgba(0, 0, 0, 0.62);
+}
+
+/* =========================
+   共通セクション
+========================= */
+
+.section {
+  padding: 90px 7%;
+  background:
+    radial-gradient(circle at top right, rgba(230, 0, 18, 0.08), transparent 28%),
+    #ffffff;
+}
+
+.section:nth-of-type(even) {
+  background:
+    radial-gradient(circle at top left, rgba(230, 0, 18, 0.06), transparent 28%),
+    #f7f7f7;
+}
+
+.section-title {
+  margin-bottom: 36px;
+  text-align: center;
+}
+
+.section-title p {
+  margin: 0 0 8px;
+  color: #e60012;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.28em;
+}
+
+.section-title h2 {
+  margin: 0;
+  font-size: clamp(34px, 6vw, 70px);
+  letter-spacing: 0.1em;
+  color: #111111;
+}
+
+.section-title h2::after {
+  content: "";
+  display: block;
+  width: 72px;
+  height: 4px;
+  margin: 18px auto 0;
+  background: #e60012;
+  border-radius: 999px;
+}
+
+.section-text {
+  text-align: center;
+  color: rgba(0, 0, 0, 0.66);
+  line-height: 1.9;
+}
+
+/* =========================
+   X横流し
+========================= */
+
+.x-section {
+  padding-top: 80px;
+}
+
+.x-marquee {
+  overflow: hidden;
+  border-top: 1px solid rgba(230, 0, 18, 0.25);
+  border-bottom: 1px solid rgba(230, 0, 18, 0.25);
+  background: #111111;
+  margin-bottom: 34px;
+}
+
+.x-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+
+.x-marquee-track span {
+  display: inline-block;
+  padding: 16px 34px;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  white-space: nowrap;
+  color: #ffffff;
+}
+
+.x-marquee-track span:nth-child(odd) {
+  color: #ff4b4b;
+}
+
+.x-timeline-box {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #ffffff;
+  border: 1px solid rgba(230, 0, 18, 0.22);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.08);
+}
+
+/* =========================
+   MEMBER
+========================= */
+
+.member-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+
+.member-card {
+  min-height: 210px;
+  padding: 28px;
+  background:
+    linear-gradient(145deg, rgba(230, 0, 18, 0.08), rgba(255, 255, 255, 1)),
+    #ffffff;
+  border: 1px solid rgba(230, 0, 18, 0.22);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.member-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(230, 0, 18, 0.75);
+  box-shadow: 0 24px 54px rgba(230, 0, 18, 0.14);
+}
+
+.member-card:target {
+  border-color: #e60012;
+  box-shadow:
+    0 0 0 2px rgba(230, 0, 18, 0.45),
+    0 24px 54px rgba(230, 0, 18, 0.2);
+  transform: translateY(-8px);
+}
+
+.member-card span {
+  color: #e60012;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+}
+
+.member-card h3 {
+  margin: 42px 0 12px;
+  font-size: 26px;
+  letter-spacing: 0.06em;
+  color: #111111;
+}
+
+.member-card p {
+  margin: 0;
+  color: rgba(0, 0, 0, 0.62);
+}
+
+/* =========================
+   ボタン
+========================= */
+
+.link-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.link-buttons a {
+  min-width: 180px;
+  padding: 15px 24px;
+  text-align: center;
+  border: 1px solid #e60012;
+  background: #ffffff;
+  color: #e60012;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  transition: 0.25s ease;
+}
+
+.link-buttons a:hover {
+  background: #e60012;
+  color: #ffffff;
+  box-shadow: 0 14px 30px rgba(230, 0, 18, 0.24);
+}
+
+/* =========================
+   アニメーション
+========================= */
+
+@keyframes revealLogo {
+  0% {
+    clip-path: inset(0 0 100% 0);
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  100% {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
+
+@keyframes logoPulse {
+  0% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 4px rgba(230, 0, 18, 0.15));
+  }
+
+  50% {
+    transform: scale(1.06);
+    filter: drop-shadow(0 0 14px rgba(230, 0, 18, 0.35));
+  }
+
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 4px rgba(230, 0, 18, 0.15));
+  }
+}
+
+@keyframes heroFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* =========================
+   スマホ対応
+========================= */
+
+@media (max-width: 900px) {
+  .site-header {
+    height: 74px;
+    padding: 0 20px;
+  }
+
+  .header-logo img {
+    width: 54px;
+  }
+
+  .menu-button {
+    display: block;
+  }
+
+  .global-nav {
+    position: fixed;
+    top: 74px;
+    right: -100%;
+    width: 78%;
+    max-width: 360px;
+    height: calc(100vh - 74px);
+    background: rgba(255, 255, 255, 0.98);
+    border-left: 1px solid rgba(230, 0, 18, 0.22);
+    transition: right 0.3s ease;
+    overflow-y: auto;
+    box-shadow: -12px 0 32px rgba(0, 0, 0, 0.08);
+  }
+
+  .global-nav.active {
+    right: 0;
+  }
+
+  .global-nav > ul {
+    display: block;
+    padding: 22px;
+  }
+
+  .global-nav a {
+    padding: 16px 0;
+  }
+
+  .global-nav a::after {
+    bottom: 10px;
+  }
+
+  .member-dropdown {
+    position: static;
+    transform: none;
+    width: 100%;
+    opacity: 1;
+    visibility: visible;
+    background: rgba(230, 0, 18, 0.05);
+    border: none;
+    box-shadow: none;
+    padding: 0 0 0 16px;
+  }
+
+  .nav-member:hover .member-dropdown {
+    transform: none;
+  }
+
+  .hero {
+    padding-top: 120px;
+  }
+
+  .hero h1 {
+    font-size: clamp(38px, 12vw, 64px);
+  }
+
+  .member-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section {
+    padding: 70px 6%;
+  }
+}
