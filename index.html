@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Gaming Team</title>
+  <title>MURASH GAMING | ムラッシュゲーミング 非公式ファンサイト</title>
 
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -14,7 +14,7 @@
   <div id="loading">
     <div class="loading-inner">
       <div class="logo-reveal">
-        <img src="images/logo.png" alt="Team Logo" class="loading-logo" />
+        <img src="images/logo.png" alt="MURASH GAMING ロゴ" class="loading-logo" />
       </div>
 
       <p id="loading-text">LOADING</p>
@@ -27,17 +27,185 @@
     </div>
   </div>
 
+  <!-- ヘッダー -->
+  <header class="site-header">
+    <div class="header-logo">
+      <a href="#home">
+        <img src="images/logo.png" alt="MURASH GAMING ロゴ" />
+      </a>
+    </div>
+
+    <button class="menu-button" id="menu-button" aria-label="メニューを開く">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="global-nav" id="global-nav">
+      <ul>
+        <li><a href="#home">HOME</a></li>
+        <li><a href="#news">NEWS</a></li>
+
+        <li class="nav-member">
+          <a href="#member">MEMBER</a>
+
+          <ul class="member-dropdown">
+            <li><a href="#valorant">VALORANT</a></li>
+            <li><a href="#sf6">SF6</a></li>
+            <li><a href="#shadowverse">Shadowverse</a></li>
+            <li><a href="#streamer">STREAMER</a></li>
+          </ul>
+        </li>
+
+        <li><a href="#sns">SNS</a></li>
+        <li>
+          <a href="https://murashgaming.jp/" target="_blank" rel="noopener noreferrer">
+            ONLINE STORE
+          </a>
+        </li>
+        <li><a href="#schedule">SCHEDULE</a></li>
+        <li><a href="#contact">CONTACT</a></li>
+      </ul>
+    </nav>
+  </header>
+
   <!-- メインサイト -->
   <main id="site-content">
-    <section class="hero">
+    <!-- HOME -->
+    <section class="hero" id="home">
       <div class="hero-content">
-        <img src="images/logo.png" alt="Team Logo" class="hero-logo" />
-        <h1>TEAM NAME</h1>
-        <p>WE ARE GAMING TEAM</p>
+        <p class="site-label">UNOFFICIAL FAN SITE</p>
+
+        <h1>MURASH GAMING</h1>
+
+        <p class="hero-subtitle">
+          ムラッシュゲーミング 非公式HP / ファンサイト
+        </p>
+
+        <p class="disclaimer">
+          当サイトはファンによる非公式サイトです。公式団体・関係者とは関係ありません。
+        </p>
       </div>
+    </section>
+
+    <!-- NEWS / X -->
+    <section class="section x-section" id="news">
+      <div class="section-title">
+        <p>OFFICIAL X</p>
+        <h2>NEWS</h2>
+      </div>
+
+      <div class="x-marquee">
+        <div class="x-marquee-track">
+          <span>MURASH GAMING</span>
+          <span>OFFICIAL X NEWS</span>
+          <span>@MURASHeSports</span>
+          <span>#MRGWIN</span>
+          <span>VALORANT</span>
+          <span>SF6</span>
+          <span>Shadowverse</span>
+          <span>STREAMER</span>
+
+          <span>MURASH GAMING</span>
+          <span>OFFICIAL X NEWS</span>
+          <span>@MURASHeSports</span>
+          <span>#MRGWIN</span>
+          <span>VALORANT</span>
+          <span>SF6</span>
+          <span>Shadowverse</span>
+          <span>STREAMER</span>
+        </div>
+      </div>
+
+      <div class="x-timeline-box">
+        <a
+          class="twitter-timeline"
+          data-theme="dark"
+          data-height="520"
+          href="https://twitter.com/MURASHeSports?ref_src=twsrc%5Etfw">
+          Tweets by MURASHeSports
+        </a>
+      </div>
+    </section>
+
+    <!-- MEMBER -->
+    <section class="section member-section" id="member">
+      <div class="section-title">
+        <p>TEAM ROSTER</p>
+        <h2>MEMBER</h2>
+      </div>
+
+      <div class="member-grid">
+        <a href="#valorant" class="member-card" id="valorant">
+          <span>01</span>
+          <h3>VALORANT</h3>
+          <p>VALORANT部門</p>
+        </a>
+
+        <a href="#sf6" class="member-card" id="sf6">
+          <span>02</span>
+          <h3>SF6</h3>
+          <p>ストリートファイター6部門</p>
+        </a>
+
+        <a href="#shadowverse" class="member-card" id="shadowverse">
+          <span>03</span>
+          <h3>Shadowverse</h3>
+          <p>Shadowverse部門</p>
+        </a>
+
+        <a href="#streamer" class="member-card" id="streamer">
+          <span>04</span>
+          <h3>STREAMER</h3>
+          <p>ストリーマー部門</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- SNS -->
+    <section class="section" id="sns">
+      <div class="section-title">
+        <p>FOLLOW</p>
+        <h2>SNS</h2>
+      </div>
+
+      <div class="link-buttons">
+        <a href="https://twitter.com/MURASHeSports" target="_blank" rel="noopener noreferrer">
+          公式X
+        </a>
+
+        <a href="https://murashgaming.jp/" target="_blank" rel="noopener noreferrer">
+          ONLINE STORE
+        </a>
+      </div>
+    </section>
+
+    <!-- SCHEDULE -->
+    <section class="section" id="schedule">
+      <div class="section-title">
+        <p>MATCH / EVENT</p>
+        <h2>SCHEDULE</h2>
+      </div>
+
+      <p class="section-text">
+        今後ここに試合日程・イベント予定を追加します。
+      </p>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+      <div class="section-title">
+        <p>MESSAGE</p>
+        <h2>CONTACT</h2>
+      </div>
+
+      <p class="section-text">
+        当サイトへのお問い合わせ欄を後で追加できます。
+      </p>
     </section>
   </main>
 
   <script src="script.js"></script>
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </body>
 </html>
