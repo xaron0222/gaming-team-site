@@ -30,3 +30,20 @@ const loadingInterval = setInterval(() => {
     }, 500);
   }
 }, 25);
+
+// スマホメニュー
+const menuButton = document.getElementById("menu-button");
+const globalNav = document.getElementById("global-nav");
+
+menuButton.addEventListener("click", () => {
+  globalNav.classList.toggle("active");
+});
+
+// メニューを押したらスマホメニューを閉じる
+const navLinks = document.querySelectorAll(".global-nav a");
+
+navLinks.forEach((link) => {
+  link.addEventListener("click", () => {
+    globalNav.classList.remove("active");
+  });
+});
